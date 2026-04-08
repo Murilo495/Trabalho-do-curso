@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Finalizar Compra - MotoVibe</title>
+  <link href="finalizar.css" rel="stylesheet">
+</head>
+<body>
+
+<h1>Finalizar Compra</h1>
+
+<h2>Motos Selecionadas</h2>
+<div id="motos-container"></div>
+<div class="total" id="total"></div>
+
+<form id="form-compra" onsubmit="return validarFormulario(event)">
+  <h2>Informações da Compra</h2>
+
+  <label>Forma de Pagamento:</label>
+  <select name="pagamento" required>
+    <option value="">Selecione</option>
+    <option value="avista">À Vista</option>
+    <option value="parcelado">Parcelado</option>
+  </select>
+
+  <label>Forma de Entrega:</label>
+  <select name="entrega" id="forma-entrega" required onchange="verificarEntrega()">
+    <option value="">Selecione</option>
+    <option value="retirada">Retirada na Loja</option>
+    <option value="encomenda">Encomenda</option>
+  </select>
+
+  <div id="dados-encomenda" class="hidden">
+    <label for="nome">Nome Completo:</label>
+    <input type="text" id="nome" name="nome" required>
+
+    <label for="cpf">CPF:</label>
+    <input type="text" id="cpf" name="cpf" maxlength="14" required oninput="validarCPF(this)">
+
+     <label for="nascimento">Data de Nascimento:</label>
+    <input type="date" id="nascimento" name="nascimento" required>
+
+    <label for="telefone">Telefone:</label>
+    <input type="tel" id="telefone" name="telefone" required>
+
+    <label for="cep">CEP:</label>
+    <input type="text" id="cep" name="cep" required maxlength="9">
+
+    <label for="obs">Observações:</label>
+    <textarea id="obs" name="obs" rows="3"></textarea>
+  </div>
+
+  <button type="submit">Confirmar Compra</button>
+</form>
+
+<script>
+  // Carrega as motos do carrinho
+  const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+  const container = document.getElementById('motos-container');
+  const totalDiv = document.getElementById('total');
+  const dadosEncomenda = document.getElementById('dados-encomenda');
+
+  let total = 0;
+
+  if (carrinho.length === 0) {
+    container.innerHTML = "<p>O carrinho está vazio.</p>";
+  } else {
+    carrinho.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'moto-item';
+      div.innerHTML = `
+        <div>
+          <strong>${item.nome}</strong><br/>
+          Quantidade: ${item.quantidade}
+        </div>
+        <div>R$ ${(item.preco * item.quantidade).toFixed(2)}</div>
+      `;
+      container.appendChild(div);
+      total += item.preco * item.quantidade;
+    });
+    totalDiv.textContent = `Total: R$ ${total.toFixed(2)}`;
+  }
+
+  function verificarEntrega() {
+    const entrega = document.getElementById('forma-entrega').value;
+    dadosEncomenda.classList.toggle('hidden', entrega !== 'encomenda');
+  }
+
+  function validarFormulario(event) {
+  const entrega = document.getElementById('forma-entrega').value;
+
+  if (entrega === 'encomenda') {
+    const nome = document.getElementById('nome').value.trim();
+    const cpf = document.getElementById('cpf').value.trim();
+    const telefone = document.getElementById('telefone').value.trim();
+    const cep = document.getElementById('cep').value.trim();
+    const nascimento = document.getElementById('nascimento').value;
+
+    if (!nome || !cpf || !telefone || !cep || !nascimento) {
+      alert("Por favor, preencha todos os campos obrigatórios da encomenda.");
+      return false;
+    }
+
+    if (!verificarMaioridade(nascimento)) {
+      alert("Apenas maiores de idade podem comprar. Verifique sua data de nascimento.");
+      return false;
+    }
+  }
+
+  alert("Compra finalizada com sucesso! Obrigado por comprar com a MotoVibe 🚀");
+  localStorage.removeItem('carrinho');
+  window.location.href = "telainicial.html";
+  return false;
+}
+
+  function verificarMaioridade(dataNascStr) {
+  const hoje = new Date();
+  const nascimento = new Date(dataNascStr);
+  let idade = hoje.getFullYear() - nascimento.getFullYear();
+  const m = hoje.getMonth() - nascimento.getMonth();
+
+  if (m < 0 || (m === 0 && hoje.getDate() < nascimento.getDate())) {
+    idade--;
+  }
+
+  return idade >= 18;
+}
+</script>
+
+</body>
+</html>

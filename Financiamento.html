@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Financiamento - MotoVibe</title>
+  <link href="Financiamento.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>Simulador de Pagamentos</h1>
+  </header>
+
+  <div class="container">
+    <h2>Digite o valor da sua Moto</h2>
+    <input type="number" id="valorMoto" placeholder="Ex: 100000" />
+    <br>
+    <label for="formaPagamento"><b>Escolha a forma de pagamento:</b></label>
+    <select id="formaPagamento">
+      <option value="cartao">Cartão (1,5% de juros ao mês)</option>
+      <option value="avista">À vista no dinheiro (6% de desconto)</option>
+      <option value="pix">Pix (4% de desconto)</option>
+    </select>
+    <br>
+    <button onclick="gerarTabela()">Calcular</button>
+
+    <!-- Tabela do financiamento (apenas para cartão) -->
+    <table id="tabelaFinanciamento">
+      <thead>
+        <tr>
+          <th>Número de Parcelas</th>
+          <th>Valor da Parcela (R$)</th>
+          <th>Valor Total (R$)</th>
+        </tr>
+      </thead>
+      <tbody id="tabelaParcelas"></tbody>
+    </table>
+
+    <!-- Resultado para Pix ou à vista -->
+    <div id="resultado" class="result-box"></div>
+
+    <a href="telainicial.html" class="back-btn">Voltar para Home</a>
+  </div>
+
+  <script>
+    const juros = 0.015; // 1,5% ao mês
+
+    // Fórmula de financiamento (Price): Parcela = P * [ i * (1+i)^n ] / [ (1+i)^n - 1 ]
+    function calcularParcela(P, i, n) {
+      return P * (i * Math.pow(1 + i, n)) / (Math.pow(1 + i, n) - 1);
+    }
+
+    function gerarTabela() {
+      const valorCarro = parseFloat(document.getElementById("valorCarro").value);
+      const forma = document.getElementById("formaPagamento").value;
+      const tabela = document.getElementById("tabelaParcelas");
+      const tabelaFinanciamento = document.getElementById("tabelaFinanciamento");
+      const resultado = document.getElementById("resultado");
+
+      tabela.innerHTML = ""; // limpa antes
+      tabelaFinanciamento.style.display = "none";
+      resultado.style.display = "none";
+
+      if (isNaN(valorCarro) || valorCarro <= 0) {
+        alert("Por favor, digite um valor válido para o carro.");
+        return;
+      }
+
+      if (forma === "cartao") {
+        for (let n = 2; n <= 72; n++) {
+          let parcela = calcularParcela(valorCarro, juros, n);
+          let total = parcela * n;
+
+          let row = `
+            <tr>
+              <td>${n}x</td>
+              <td>${parcela.toFixed(2).replace('.', ',')}</td>
+              <td>${total.toFixed(2).replace('.', ',')}</td>
+            </tr>
+          `;
+          tabela.innerHTML += row;
+        }
+        tabelaFinanciamento.style.display = "table";
+
+      } else if (forma === "avista") {
+        let valorComDesconto = valorCarro * 0.94; // 6% de desconto
+        resultado.innerHTML = `💵 Pagamento à vista no dinheiro: <b>R$ ${valorComDesconto.toFixed(2).replace('.', ',')}</b> (6% de desconto)`;
+        resultado.style.display = "block";
+
+      } else if (forma === "pix") {
+        let valorComDescontoPix = valorCarro * 0.96; // 4% de desconto
+        resultado.innerHTML = `⚡ Pagamento via Pix: <b>R$ ${valorComDescontoPix.toFixed(2).replace('.', ',')}</b> (4% de desconto)`;
+        resultado.style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>

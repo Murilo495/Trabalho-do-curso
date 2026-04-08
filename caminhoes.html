@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Caminhões - BackCARS</title>
+    <link href="caminhoes.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div class="logo">BackCARS</div>
+    <nav class="top-nav">
+        <a href="telainicial.html">Home</a>
+        <a href="Contato.html">Contato</a>
+        <a href="login.html">Sair</a>
+    </nav>
+    <a href="carrinho.html" id="botao-carrinho" title="Ver Carrinho">??</a>
+</header>
+<div class="page-wrap">
+    <aside class="sidebar">
+        <h3>Escolha uma categoria</h3>
+        <button type="button" onclick="location.href='carros.html'">Carros</button>
+        <button type="button" onclick="location.href='motos.html'">Motos</button>
+        <button type="button" onclick="location.href='caminhoes.html'">Caminh�es</button>
+    </aside>
+    <main>
+        <section class="page-header">
+            <span>Transporte pesado</span>
+            <h1>Caminhões BackCARS</h1>
+            <p>Modelos robustos e confiáveis para todas as rotas e cargas do seu negócio.</p>
+        </section>
+        <section class="section-grid">
+            <article class="card">
+                <img src="https://cdn.pixabay.com/photo/2018/08/26/23/55/truck-3632821_1280.jpg" alt="Volvo FH" />
+                <div class="card-body">
+                    <h3>Volvo FH</h3>
+                    <p>Potência e eficiência para longas distâncias.</p>
+                    <div class="price">R$ 500.000</div>
+                    <button class="btn" onclick="adicionarAoCarrinho('Volvo FH', 500000)">Adicionar ao Carrinho</button>
+                </div>
+            </article>
+            <article class="card">
+                <img src="https://cdn.pixabay.com/photo/2017/08/01/23/21/truck-2565096_1280.jpg" alt="Scania R" />
+                <div class="card-body">
+                    <h3>Scania R</h3>
+                    <p>Conforto, durabilidade e alto desempenho.</p>
+                    <div class="price">R$ 450.000</div>
+                    <button class="btn" onclick="adicionarAoCarrinho('Scania R', 450000)">Adicionar ao Carrinho</button>
+                </div>
+            </article>
+            <article class="card">
+                <img src="https://cdn.pixabay.com/photo/2016/11/23/14/37/truck-1852844_1280.jpg" alt="Mercedes-Benz Actros" />
+                <div class="card-body">
+                    <h3>Mercedes-Benz Actros</h3>
+                    <p>Tecnologia avançada e economia de combustível.</p>
+                    <div class="price">R$ 480.000</div>
+                    <button class="btn" onclick="adicionarAoCarrinho('Mercedes-Benz Actros', 480000)">Adicionar ao Carrinho</button>
+                </div>
+            </article>
+            <article class="card">
+                <img src="https://cdn.pixabay.com/photo/2018/08/26/23/55/truck-3632821_1280.jpg" alt="Iveco Stralis" />
+                <div class="card-body">
+                    <h3>Iveco Stralis</h3>
+                    <p>Versatilidade e baixo custo de manutenção.</p>
+                    <div class="price">R$ 420.000</div>
+                    <button class="btn" onclick="adicionarAoCarrinho('Iveco Stralis', 420000)">Adicionar ao Carrinho</button>
+                </div>
+            </article>
+            <article class="card">
+                <img src="https://cdn.pixabay.com/photo/2017/08/01/23/21/truck-2565096_1280.jpg" alt="MAN TGX" />
+                <div class="card-body">
+                    <h3>MAN TGX</h3>
+                    <p>Robustez para transportar cargas pesadas com seguran�a.</p>
+                    <div class="price">R$ 460.000</div>
+                    <button class="btn" onclick="adicionarAoCarrinho('MAN TGX', 460000)">Adicionar ao Carrinho</button>
+                </div>
+            </article>
+            <article class="card">
+                <img src="https://cdn.pixabay.com/photo/2016/11/23/14/37/truck-1852844_1280.jpg" alt="DAF XF" />
+                <div class="card-body">
+                    <h3>DAF XF</h3>
+                    <p>Conforto premium com excelente rendimento em estrada.</p>
+                    <div class="price">R$ 470.000</div>
+                    <button class="btn" onclick="adicionarAoCarrinho('DAF XF', 470000)">Adicionar ao Carrinho</button>
+                </div>
+            </article>
+        </section>
+    </main>
+</div>
+<footer>
+    @ 2025 BackCARS - Todos os direitos reservados.
+</footer>
+<script>
+    function adicionarAoCarrinho(nome, preco) {
+        const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+        const item = carrinho.find(i => i.nome === nome);
+        if (item) item.quantidade += 1;
+        else carrinho.push({ nome, preco, quantidade: 1 });
+        localStorage.setItem('carrinho', JSON.stringify(carrinho));
+        alert(`${nome} adicionado ao carrinho!`);
+    }
+</script>
+</body>
+</html>

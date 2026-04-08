@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body, html {
+    height: 100%;
+    background: #7d82c9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+}
+
+.login-box {
+    background-color: #000000;
+    padding: 2.5rem 3rem;
+    border-radius: 10px;
+    width: 350px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+.login-box h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.login-box p.subtitle {
+    color: #ffffff;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.login-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+label {
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+}
+
+input[type="email"],
+input[type="password"] {
+    padding: 0.9rem 1rem;
+    border-radius: 6px;
+    border: none;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: 2px solid #000080;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+button {
+    background: #000080;
+    border: none;
+    padding: 1rem;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    background: #000040;
+}
+
+.footer-text {
+    margin-top: 1.8rem;
+    font-size: 0.9rem;
+    color: #ffffff;
+}
+
+.footer-text a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.footer-text a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 400px) {
+    .login-box {
+        width: 90%;
+        padding: 2rem;
+    }
+}
