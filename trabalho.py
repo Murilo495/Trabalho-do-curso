@@ -1,3 +1,5 @@
+#Sugiro a criação posterior de cada exercício no seu arquivo. Terminem todos eles e, após isso, separem eles.
+
 
 #Questão 1=
 nota1 = float(input("Digite a primeira nota: "))
