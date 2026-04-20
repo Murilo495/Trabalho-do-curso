@@ -94,7 +94,7 @@ print (f"A diferença de preço é de R$ {diferença:.2f}")
 
 # Só pra deixar claro que te odeio professor kkkkk fiquei meia eternidade até entender e fazer essa questão
 
-#Questão 6=
+#Questão 6= do jeito que eu queria!!
 irmaos = [
     int(input("Digite o ano de nascimento do irmão 1: ")),
     int(input("Digite o ano de nascimento do irmão 2: ")),
@@ -113,6 +113,34 @@ else:
     print ("Nenhum dos irmãos é gêmeo.")
 
     # Tive que fazer assim, nenhuma maneira estava dando certo então aprendi com o youtube outra maneira de fazer e essa é bem mais eficiente.
+
+#Questão 6= do jeito solicitado pelo professor.
+ir1 = int(input("Digite o ano de nascimento do irmão 1: "))
+ir2 = int(input("Digite o ano de nascimento do irmão 2: "))
+ir3 = int(input("Digite o ano de nascimento do irmão 3: "))
+
+if ir1 == ir2 == ir3:
+    print ("Os irmãos são trigêmeos")
+elif ir1 == ir2 or ir1 == ir3 or ir2 == ir3:
+    print ("Dois irmãos são gêmeos.")
+else:
+    print ("Nenhum dos irmãos é gêmeo.")
+
+if ir1 < ir2 and ir1 < ir3:
+    if ir2 < ir3:
+        print (f"Em ordem crescente, os anos de nascimento dos irmãos são: {ir1}, {ir2}, {ir3}")
+    else:
+        print (f"Em ordem crescente, os anos de nascimento dos irmãos são: {ir1}, {ir3}, {ir2}")
+elif ir2 < ir1 and ir2 < ir3:
+    if ir1 < ir3:
+        print (f"Em ordem crescente, os anos de nascimento dos irmãos são: {ir2}, {ir1}, {ir3}")
+    else:
+        print (f"Em ordem crescente, os anos de nascimento dos irmãos são: {ir2}, {ir3}, {ir1}")
+else:
+    if ir1 < ir2:
+        print (f"Em ordem crescente, os anos de nascimento dos irmãos são: {ir3}, {ir1}, {ir2}")
+    else:
+        print (f"Em ordem crescente, os anos de nascimento dos irmãos são: {ir3}, {ir2}, {ir1}")
 
 #Questão 7=
 reta1 = int(input("Digite o comprimento da reta 1: "))
