@@ -94,6 +94,24 @@ print (f"A diferença de preço é de R$ {diferença:.2f}")
 
 # Só pra deixar claro que te odeio professor kkkkk fiquei meia eternidade até entender e fazer essa questão
 
+#Questão 6= do jeito que eu queria!!
+irmaos = [
+    int(input("Digite o ano de nascimento do irmão 1: ")),
+    int(input("Digite o ano de nascimento do irmão 2: ")),
+    int(input("Digite o ano de nascimento do irmão 3: "))
+]
+
+irmaos.sort()
+
+print (f"Em ordem crescente, os anos de nascimento dos irmãos são: {irmaos[0]}, {irmaos[1]}, {irmaos[2]}")
+
+if irmaos[0] == irmaos[1] == irmaos[2]:
+    print ("Os irmãos são trigêmeos")
+elif irmaos[0] == irmaos[1] or irmaos[0] == irmaos[2] or irmaos[1] == irmaos[2]:
+    print ("Dois irmãos são gêmeos.")
+else:
+    print ("Nenhum dos irmãos é gêmeo.")
+    
 #Questão 6= do jeito solicitado pelo professor.
 ir1 = int(input("Digite o ano de nascimento do irmão 1: "))
 ir2 = int(input("Digite o ano de nascimento do irmão 2: "))
@@ -226,8 +244,71 @@ else: # Aqui é para o comum
 
 print("Valor total da compra: ", total) # Faz o print do valor total da compra, já calculando o desconto, de acordo com a categoria
 
-#questão 12= 
-ano = int (input("Digite o ano: "))
+#Questão 12= 
+ano = int(input("Digite o ano com 4 números: ")) 
+
+if ano % 4 == 0: 
+    if ano % 100 == 0:
+        if ano % 400 == 0:
+            print("O ano é Bissexto")
+else:
+    print("o ano é comum")
+
+#Questão 13=
+ataque = int(input("Digite o valor do Ataque do jogador: "))
+defesa = int(input("Digite a Defesa do monstro: "))
+dado = int(input("Digite o resultado do dado de 20 faces (1 a 20): "))
+
+if dado == 20:
+    print ("Acerto crítico")
+    dano = ataque * 2 
+    print (f"O dano causado é: {dano}")
+elif dado == 1:
+    print ("Falha crítica")
+    dano = 0
+    print (f"O dano causado é: {dano}")
+else:
+    dano = (ataque + dado) - defesa
+    if dano < 0:
+        dano = 0
+    print (f"O dano causado é: {dano}")
+
+#Questão 14=
+usuario = input("Digite o nome de usuário: ")
+senha = int(input("Digite a senha: "))
+
+if usuario == "admin" and senha == 1234:
+    print ("Acesso liberado")
+elif usuario == "admin" and senha != 1234:
+    print ("Senha incorreta")
+else:
+    usuario != "admin" and senha == 1234
+    print ("Usuário não encontrado no sistema")
+
+#Questão 15=
+
+#Questão 16=
+cor = input("Digite a cor do semáforo (vermelho, amarelo ou verde): ")
+velocidade = float(input("Digite a velocidade do veículo em km/h: "))
+
+if cor == "vermelho":
+    if velocidade > 0:
+        print ("Multa Gravíssima por avanço.")
+    else:
+        print ("Condução segura.")
+elif cor == "amarelo":
+    if velocidade > 60:
+        print ("Multa por excesso de velocidade no amarelo.")
+    else:
+        print ("Condução segura.")
+
+elif cor == "verde":
+    if velocidade > 80:
+        print ("Multa por excesso de velocidade.")
+    else:
+        print ("Condução segura.")
+
+
 
 
 
