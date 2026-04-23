@@ -308,6 +308,60 @@ elif cor == "verde":
     else:
         print ("Condução segura.")
 
+#Questão 17=
+bruto = float(input("Diga seu salario bruto: "))
+
+if bruto <= 2000:
+    salario = bruto
+    imposto = 0
+elif 2000<= bruto <=4000:
+  salario = bruto - (bruto * 10/100)
+  imposto = bruto * 10/100
+else:
+  salario = bruto - (bruto * 20/100)
+  imposto = bruto * 20/100
+print(f"Salário líquido: {salario}")
+print(f"Imposto: {imposto}")
+
+#Questão 18=
+dias = int(input("Digite o dia: "))
+mes = int(input("Digite o mês: "))
+
+if mes < 1 or mes > 12:
+    print ("Data inválida")
+elif mes == 2:
+    if dias < 1 or dias > 28:
+        print("Data inválida")
+    else:
+        print ("Data válida")
+elif mes == 4 or mes == 6 or mes == 9 or mes == 11:
+    if dias < 1 or dias > 30:
+        print ("Data inválida")
+    else:
+        print ("Data válida")
+else:
+    if dias < 1 or dias > 31:
+        print ("Data inválida")
+    else:
+        print ("Data válida")
+
+#Questão 19=
+nota1 = float(input("Digite a primeira nota: "))
+nota2 = float(input("Digite a segunda nota: "))
+faltas = int(input("Digite o número de faltas: "))
+media = (nota1 + nota2) / 2
+
+if media >= 7 and faltas <= 10:
+    print ("Aprovado")
+
+elif media < 7 and faltas <= 10:
+    print ("Exame final")
+elif faltas > 10:
+    print ("Reprovado por faltas")
+
+#Questão 20=
+
+
 
 
 
