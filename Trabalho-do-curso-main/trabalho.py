@@ -247,10 +247,10 @@ print("Valor total da compra: ", total) # Faz o print do valor total da compra, 
 #Questão 12= 
 ano = int(input("Digite o ano com 4 números: ")) 
 
-if ano % 4 == 0: 
-    if ano % 100 == 0:
-        if ano % 400 == 0:
-            print("O ano é Bissexto")
+if ano % 4 == 0: # Se o ano for divisível por 4, ele pode ser bissexto, mas ainda precisa passar por mais testes
+    if ano % 100 == 0: # Se o ano for divisível por 100, ele pode ser bissexto, mas ainda precisa passar por mais um testes
+        if ano % 400 == 0: # Se o ano for divisível por 400, ele é bissexto
+            print("O ano é Bissexto") #Precisa passar por todos esses testes para ser bissexto   
 else:
     print("o ano é comum")
 
@@ -259,15 +259,15 @@ ataque = int(input("Digite o valor do Ataque do jogador: "))
 defesa = int(input("Digite a Defesa do monstro: "))
 dado = int(input("Digite o resultado do dado de 20 faces (1 a 20): "))
 
-if dado == 20:
+if dado == 20: #Se o resultado do dado for 20, é um acerto crítico, o dano é o dobro do ataque
     print ("Acerto crítico")
     dano = ataque * 2 
     print (f"O dano causado é: {dano}")
-elif dado == 1:
+elif dado == 1: #Se o resultado do dado for 1, é uma falha crítica, o dano é 0
     print ("Falha crítica")
     dano = 0
     print (f"O dano causado é: {dano}")
-else:
+else: #Se o resultado do dado for entre 2 e 19, o dano é calculado normalmente, subtraindo a defesa do monstro do ataque do jogador, e somando o resultado do dado
     dano = (ataque + dado) - defesa
     if dano < 0:
         dano = 0
@@ -277,11 +277,11 @@ else:
 usuario = input("Digite o nome de usuário: ")
 senha = int(input("Digite a senha: "))
 
-if usuario == "admin" and senha == 1234:
+if usuario == "admin" and senha == 1234: #Se o nome de usuário for "admin" e a senha for 1234, o acesso é liberado
     print ("Acesso liberado")
-elif usuario == "admin" and senha != 1234:
+elif usuario == "admin" and senha != 1234: #Se o nome de usuário for "admin" e a senha for diferente de 1234, o acesso é negado por senha incorreta
     print ("Senha incorreta")
-else:
+else: #Se o nome de usuário for diferente de "admin", o acesso é negado por usuário não encontrado, independente da senha
     usuario != "admin" and senha == 1234
     print ("Usuário não encontrado no sistema")
 
@@ -291,18 +291,18 @@ else:
 cor = input("Digite a cor do semáforo (vermelho, amarelo ou verde): ")
 velocidade = float(input("Digite a velocidade do veículo em km/h: "))
 
-if cor == "vermelho":
+if cor == "vermelho": #Se a cor do semáforo for vermelha e a velocidade foi maior que zero imprime "Multa Gravíssima por avanço", caso contrário, se a velocidade for igual a zero, imprime "Condução segura"
     if velocidade > 0:
         print ("Multa Gravíssima por avanço.")
     else:
         print ("Condução segura.")
-elif cor == "amarelo":
+elif cor == "amarelo": #Se a cor do semáforo for amarela e a velocidade for maior que 60 km/h, imprime "Multa por excesso de velocidade no amarelo", caso contrário, se a velocidade for menor ou igual a 60 km/h, imprime "Condução segura"
     if velocidade > 60:
         print ("Multa por excesso de velocidade no amarelo.")
     else:
         print ("Condução segura.")
 
-elif cor == "verde":
+elif cor == "verde": #Se a cor do semáforo for verde e a velocidade for maior que 80 km/h, imprime "Multa por excesso de velocidade", caso contrário, se a velocidade for menor ou igual a 80 km/h, imprime "Condução segura"
     if velocidade > 80:
         print ("Multa por excesso de velocidade.")
     else:
@@ -311,13 +311,13 @@ elif cor == "verde":
 #Questão 17=
 bruto = float(input("Diga seu salario bruto: "))
 
-if bruto <= 2000:
+if bruto <= 2000: #Se o sálario bruto for menor ou igual a 2000, não tem imposto sobre o salário, então o salário líquido é igual ao salário bruto e o imposto é 0
     salario = bruto
     imposto = 0
-elif 2000<= bruto <=4000:
+elif 2000<= bruto <=4000: #Se o salário bruto for maior que 2000 e menor ou igual a 4000, tem um imposto de 10% sobre o salário, então o salário líquido é igual ao salário bruto menos o imposto, e o imposto é calculado como 10% do salário bruto
   salario = bruto - (bruto * 10/100)
   imposto = bruto * 10/100
-else:
+else: #Se o salário bruto for maior que 4000, tem um imposto de 20% sobre o salário, então o salário líquido é igual ao salário bruto menos o imposto, e o imposto é calculado como 20% do salário bruto
   salario = bruto - (bruto * 20/100)
   imposto = bruto * 20/100
 print(f"Salário líquido: {salario}")
@@ -327,19 +327,19 @@ print(f"Imposto: {imposto}")
 dias = int(input("Digite o dia: "))
 mes = int(input("Digite o mês: "))
 
-if mes < 1 or mes > 12:
+if mes < 1 or mes > 12: #Se o mês for menor que 1 ou maior que 12, a data é inválida, pois não existe um mês com esse número
     print ("Data inválida")
-elif mes == 2:
+elif mes == 2: #Se o mês for 2, a data é válida se o dia for entre 1 e 28, caso contrário, a data é inválida, pois fevereiro tem no máximo 28 dias 
     if dias < 1 or dias > 28:
         print("Data inválida")
     else:
         print ("Data válida")
-elif mes == 4 or mes == 6 or mes == 9 or mes == 11:
+elif mes == 4 or mes == 6 or mes == 9 or mes == 11: #Se o mês for 4, 6, 9 ou 11, a data é válida se o dia for entre 1 e 30, caso contrário, a data é inválida, pois esses meses tem no máximo 30 dias
     if dias < 1 or dias > 30:
         print ("Data inválida")
     else:
         print ("Data válida")
-else:
+else: #Se o mês for 1, 3, 5, 7, 8, 10 ou 12, a data é válida se o dia for entre 1 e 31, caso contrário, a data é inválida, pois esses meses tem no máximo 31 dias
     if dias < 1 or dias > 31:
         print ("Data inválida")
     else:
@@ -351,17 +351,27 @@ nota2 = float(input("Digite a segunda nota: "))
 faltas = int(input("Digite o número de faltas: "))
 media = (nota1 + nota2) / 2
 
-if media >= 7 and faltas <= 10:
+if media >= 7 and faltas <= 10: #Se a média for maior ou igual a 7 e o número de faltas for menor ou igual a 10, o aluno é aprovado
     print ("Aprovado")
 
-elif media < 7 and faltas <= 10:
+elif media < 7 and faltas <= 10: #Se a média for menor que 7 e o número de faltas for menor ou igual a 10, o aluno faz exame final
     print ("Exame final")
-elif faltas > 10:
+elif faltas > 10: #Se o número de faltas for maior que 10, o aluno é reprovado por faltas
+
     print ("Reprovado por faltas")
 
 #Questão 20=
+post = int(input("Digite o nível da publicação (1 (publico), 2 (amigos), 3 (privado)): "))
+papel = int(input("Digite o papel do usuário (1 (estranho), 2 (amigo), 3 (dono do perfil)): "))
 
-
+if post == 1: #Se o nível da publicação for 1 (público), o acesso é permitido para qualquer papel de usuário, então imprime "Acesso permitido"
+    print ("Acesso permitido")
+elif post == 2 and (papel == 2 or papel == 3): #Se o nível da publicação for 2 (amigos) e o papel do usuário for 2 (amigo) ou 3 (dono do perfil), o acesso é permitido, caso contrário, o acesso é negado
+    print ("Acesso permitido")
+elif post == 3 and papel == 3: #Se o nível da publicação for 3 (privado) e o papel do usuário for 3 (dono do perfil), o acesso é permitido, caso contrário, o acesso é negado
+    print ("Acesso permitido")
+else: #Se nenhuma das condições anteriores for atendida, o acesso é negado
+    print ("Acesso negado")
 
 
 
